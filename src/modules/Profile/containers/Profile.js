@@ -33,17 +33,20 @@ class Profile extends Component {
         <WhiteSpace size="lg" />
         <List>
           {
-            userName ? <List.Item
-              thumb={<Icon type="login" size="md"/>}
-              onClick={this.onShowPersonalDetailClick}
-              arrow="horizontal">
-              {userName}
-            </List.Item> : <List.Item
-              thumb={<Icon type="login" size="md"/>}
-              onClick={this.onLoginOrRegisterClick}
-              arrow="horizontal">
-              登录/注册
-            </List.Item>
+            userName ? 
+              <List.Item
+                thumb={<Icon type="login" size="md"/>}
+                onClick={this.onShowPersonalDetailClick}
+                arrow="horizontal">
+                {userName}
+              </List.Item> 
+              : 
+              <List.Item
+                thumb={<Icon type="login" size="md"/>}
+                onClick={this.onLoginOrRegisterClick}
+                arrow="horizontal">
+                登录/注册
+              </List.Item>
           }
           <List.Item
             thumb={<Icon type="setting" size="md"/>}

@@ -33,59 +33,62 @@ class App extends Component {
 
   getNowDom () {
     const { selectedTab } = this.state;
-    console.log(window.location.search);
-    const hashUrlBool = window.location.search === '';
+    const hashUrlBool = window.location.hash === '#/';
     return (
-      <div>
-        {routes}
-        {
-          hashUrlBool ? 
-            null 
-            :
-            <TabBar
-              unselectedTintColor="#949494"
-              tintColor="#01A982"
-              barTintColor="white">
-              <TabBar.Item
-                icon={<Icon type="index" size="lg"/>}
-                selectedIcon={<Icon type="index-o" size="lg"/>}
-                title="段子"
-                key="段子"
-                data-seed="logId1"
-                selected={selectedTab === TAB_ITEM_STORY}
-                onPress={() => this.onTabItemChange(TAB_ITEM_STORY)}>
-              </TabBar.Item>
-              <TabBar.Item
-                icon={<Icon type="notification" size="lg"/>}
-                selectedIcon={<Icon type="notification-o" size="lg"/>}
-                title="通知"
-                key="通知"
-                data-seed="logId1"
-                selected={selectedTab === 'tab3'}
-                onPress={() => {
-                  this.setState({
-                    selectedTab: 'tab3',
-                  });
-                }}>
-              </TabBar.Item>
-              <TabBar.Item
-                icon={<Icon type="account" size="lg"/>}
-                selectedIcon={<Icon type="account" size="lg"/>}
-                title="我的"
-                key="我的"
-                data-seed="logId1"
-                selected={selectedTab === TAB_ITEM_PROFILE}
-                onPress={() => this.onTabItemChange(TAB_ITEM_PROFILE)}>
-              </TabBar.Item>
-            </TabBar>
-        }
+      <div style={{ display: 'flex', flexDirection: 'column', height: '6.7rem' }}>
+        <div style={{ flex: '1' }}>
+          {routes}
+        </div>
+        <div style={{ height: '60px' }}>
+          {
+            hashUrlBool ? 
+              null 
+              :
+              <TabBar
+                unselectedTintColor="#949494"
+                tintColor="#01A982"
+                barTintColor="white">
+                <TabBar.Item
+                  icon={<Icon type="index" size="lg"/>}
+                  selectedIcon={<Icon type="index-o" size="lg"/>}
+                  title="段子"
+                  key="段子"
+                  data-seed="logId1"
+                  selected={selectedTab === TAB_ITEM_STORY}
+                  onPress={() => this.onTabItemChange(TAB_ITEM_STORY)}>
+                </TabBar.Item>
+                <TabBar.Item
+                  icon={<Icon type="notification" size="lg"/>}
+                  selectedIcon={<Icon type="notification-o" size="lg"/>}
+                  title="通知"
+                  key="通知"
+                  data-seed="logId1"
+                  selected={selectedTab === 'tab3'}
+                  onPress={() => {
+                    this.setState({
+                      selectedTab: 'tab3',
+                    });
+                  }}>
+                </TabBar.Item>
+                <TabBar.Item
+                  icon={<Icon type="account" size="lg"/>}
+                  selectedIcon={<Icon type="account" size="lg"/>}
+                  title="我的"
+                  key="我的"
+                  data-seed="logId1"
+                  selected={selectedTab === TAB_ITEM_PROFILE}
+                  onPress={() => this.onTabItemChange(TAB_ITEM_PROFILE)}>
+                </TabBar.Item>
+              </TabBar>
+          }
+        </div>
       </div>
     );
   }
 
   render () {
     return (
-      <div>
+      <div style={{ width: '100%', height: '100%' }}>
         {this.getNowDom()}
       </div>
     );

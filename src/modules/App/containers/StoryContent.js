@@ -1,8 +1,12 @@
+/**
+ * 创建人： ludan
+ * 创建模块：主页
+ * 创建时间：2018-06-24
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
-import { Card, WhiteSpace, Icon, SearchBar, Flex } from "antd-mobile";
+import { Card, WhiteSpace, Icon, SearchBar, Flex, NavBar } from "antd-mobile";
 import * as Path from 'constants/storePath';
 import style from 'styles/app.scss';
 import { fetchStoryList, deleteStoryItem } from '../actions/story';
@@ -11,10 +15,10 @@ import { COMMENT_AGREE } from 'constants/constants';
 class StoryContent extends Component {
   constructor () {
     super();
+    this.shareStory = this.shareStory.bind(this);
     this.state = {
       commentType: COMMENT_AGREE
     };
-    this.shareStory = this.shareStory.bind(this);
   }
 
   shareStory () {
@@ -23,7 +27,6 @@ class StoryContent extends Component {
 
   async onDeleteStoryItem (articleId) {
     await this.props.deleteStoryItem({ articleId });
-
     await this.props.fetchStoryList();
   }
 
@@ -34,7 +37,6 @@ class StoryContent extends Component {
   render () {
     const { storyList=[] } = this.props;
     if (!storyList) return;
-
     const cardList = storyList.map(item => {
       return (
         <div key={item.articleId}>
@@ -63,6 +65,7 @@ class StoryContent extends Component {
     });
     return (
       <div>
+        <NavBar mode="dark" onLeftClick={this.goBack}>首页</NavBar>
         <SearchBar placeholder="搜索文章、作者" maxLength={8}/>
         <WhiteSpace size="xs"/>
         <Flex style={{ background: 'white' }}>
